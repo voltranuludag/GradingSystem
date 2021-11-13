@@ -25,22 +25,29 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public IList<UserSelectedByOperationDto> GetUserSelectedByOperationId(int operationId)
+        public IList<UserDetailSelectedByOperationDto> GetUserDetailSelectedByOperationId(int operationId)
         {
             using (var context = new GradingSystemDbContext())
             {
                 var result = from user in context.Users
                     join userClaim in context.UserOperationClaims on user.Id equals userClaim.UserId
                     join operation in context.OperationClaims on userClaim.OperationClaimId equals operation.Id
+                    join sectionUser in context.UserSections on user.Id equals sectionUser.UserId
+                    join section in context.Sections on sectionUser.SectionId equals section.Id
+                    join faculty in context.Faculties on section.FacultyId equals faculty.Id
                     where userClaim.Id == operationId
-                    select new UserSelectedByOperationDto
+                    select new UserDetailSelectedByOperationDto
                     {
                         UserId = user.Id,
                         UserOperationId = userClaim.Id,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         OperationName = operation.Name,
-                        Status = user.Status
+                        Status = user.Status,
+                        FacultyId = faculty.Id,
+                        FacultyName = faculty.FacultyName,
+                        SectionId = section.Id,
+                        SectionName = section.SectionName
                     };
                 return result.ToList();
             }

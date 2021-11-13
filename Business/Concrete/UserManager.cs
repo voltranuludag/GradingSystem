@@ -24,12 +24,12 @@ namespace Business.Concrete
             return _userDal.GetClaims(user);
         }
 
-        public IDataResult<IList<UserSelectedByOperationDto>> GetUsersByOperationClaimId(int operationClaimId)
+        public IDataResult<IList<UserDetailSelectedByOperationDto>> GetUsersByOperationClaimId(int operationClaimId)
         {
             try
             {
-                IList<UserSelectedByOperationDto> getList = _userDal.GetUserSelectedByOperationId(operationClaimId);
-                return new SuccessDataResult<IList<UserSelectedByOperationDto>>(getList);
+                IList<UserDetailSelectedByOperationDto> getList = _userDal.GetUserDetailSelectedByOperationId(operationClaimId);
+                return new SuccessDataResult<IList<UserDetailSelectedByOperationDto>>(getList);
             }
             catch (Exception exception)
             {
