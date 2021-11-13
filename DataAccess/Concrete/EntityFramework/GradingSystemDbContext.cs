@@ -30,5 +30,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<UserSection> UserSections { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Homework> Homeworks{ get; set; }
+        public DbSet<GroupHomework> GroupHomeworks { get; set; }
     }
 }

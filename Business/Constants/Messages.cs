@@ -50,5 +50,7 @@ namespace Business.Constants
         public static string AlreadyPropertyName = "Bu isim zaten var";
 
         public static string Added = "Ekleme işlemi yapıldı.";
+
+        public static string AlreadyTakeHomework = "Ödev zaten verildi.";
     }
 }

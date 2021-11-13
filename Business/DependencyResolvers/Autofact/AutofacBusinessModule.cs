@@ -37,6 +37,12 @@ namespace Business.DependencyResolvers.Autofact
             builder.RegisterType<GroupManager>().As<IGroupService>().SingleInstance();
             builder.RegisterType<EfGroupDal>().As<IGroupDal>().SingleInstance();
 
+            builder.RegisterType<HomeworkManager>().As<IHomeworkService>().SingleInstance();
+            builder.RegisterType<EfHomeworkDal>().As<IHomeworkDal>().SingleInstance();
+
+            builder.RegisterType<GroupHomeworkManager>().As<IGroupHomeworkService>().SingleInstance();
+            builder.RegisterType<EfGroupHomeworkDal>().As<IGroupHomeworkDal>().SingleInstance();
+
             builder.RegisterType<FacultyManager>().As<IFacultyService>().SingleInstance();
             builder.RegisterType<EfFacultyDal>().As<IFacultyDal>().SingleInstance();
 
