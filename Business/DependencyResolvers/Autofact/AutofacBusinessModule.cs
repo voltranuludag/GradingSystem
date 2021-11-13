@@ -8,6 +8,7 @@ using Business.Abstract;
 using Business.CCS;
 using Business.Concrete;
 using Castle.DynamicProxy;
+using Core.Entities.Concrete;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
@@ -29,6 +30,9 @@ namespace Business.DependencyResolvers.Autofact
             //program ilk açılırken outofac bellekte bu nesnelerin reflection ıle instance ını alır boylece daha performanslı çalışır. 
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
+
+            builder.RegisterType<OperationClaimManager>().As<IOperationClaimSevice>().SingleInstance();
+            builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>().SingleInstance();
 
             builder.RegisterType<FacultyManager>().As<IFacultyService>().SingleInstance();
             builder.RegisterType<EfFacultyDal>().As<IFacultyDal>().SingleInstance();
