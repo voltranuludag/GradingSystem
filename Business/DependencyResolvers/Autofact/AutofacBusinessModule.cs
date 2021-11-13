@@ -34,6 +34,9 @@ namespace Business.DependencyResolvers.Autofact
             builder.RegisterType<OperationClaimManager>().As<IOperationClaimSevice>().SingleInstance();
             builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>().SingleInstance();
 
+            builder.RegisterType<GroupManager>().As<IGroupService>().SingleInstance();
+            builder.RegisterType<EfGroupDal>().As<IGroupDal>().SingleInstance();
+
             builder.RegisterType<FacultyManager>().As<IFacultyService>().SingleInstance();
             builder.RegisterType<EfFacultyDal>().As<IFacultyDal>().SingleInstance();
 
