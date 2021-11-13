@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
     {
         List<OperationClaim> GetClaims(User user);
 
-        IList<UserDetailSelectedByOperationDto> GetUserDetailSelectedByOperationId(int operationId);
+        IList<UserDetailSelectedByOperationDto> GetUsersDetailSelectedByOperationId(int operationId);
     }
 }

@@ -25,7 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public IList<UserDetailSelectedByOperationDto> GetUserDetailSelectedByOperationId(int operationId)
+        public IList<UserDetailSelectedByOperationDto> GetUsersDetailSelectedByOperationId(int operationId)
         {
             using (var context = new GradingSystemDbContext())
             {

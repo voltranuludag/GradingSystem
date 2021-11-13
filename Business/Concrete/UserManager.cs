@@ -28,7 +28,7 @@ namespace Business.Concrete
         {
             try
             {
-                IList<UserDetailSelectedByOperationDto> getList = _userDal.GetUserDetailSelectedByOperationId(operationClaimId);
+                IList<UserDetailSelectedByOperationDto> getList = _userDal.GetUsersDetailSelectedByOperationId(operationClaimId);
                 return new SuccessDataResult<IList<UserDetailSelectedByOperationDto>>(getList);
             }
             catch (Exception exception)
