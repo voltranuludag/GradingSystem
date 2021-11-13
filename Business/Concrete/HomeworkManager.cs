@@ -14,33 +14,39 @@ using Entities.Concrete;
 
 namespace Business.Concrete
 {
-    public class GroupManager : IGroupService
+    public class HomeworkManager:IHomeworkService
     {
-        private IGroupDal _groupDal;
-        public IDataResult<IList<Group>> GetAllGroup()
+        private IHomeworkDal _homeworkDal;
+
+        public HomeworkManager(IHomeworkDal homeworkDal)
+        {
+            _homeworkDal = homeworkDal;
+        }
+
+        public IDataResult<IList<Homework>> GetAllHomework()
         {
             try
             {
-                IList<Group> getList = _groupDal.GetAll();
-                return new SuccessDataResult<IList<Group>>(getList);
+                IList<Homework> getList = _homeworkDal.GetAll();
+                return new SuccessDataResult<IList<Homework>>(getList);
             }
             catch (Exception exception)
             {
-                throw new Exception(Messages.ListedError,exception);
+                throw new Exception(Messages.ListedError, exception);
             }
         }
 
-        [ValidationAspect(typeof(GroupValidator))]
-        public IResult AddGroup(Group group)
+        [ValidationAspect(typeof(Homeworkvalidator))]
+        public IResult AddHomework(Homework homework)
         {
             try
             {
-                IResult result = BusinessRules.Run(AlreadyExistName(group));
+                IResult result = BusinessRules.Run(AlreadyExistName(homework));
                 if (result != null)
                 {
                     return result;
                 }
-                _groupDal.Add(group);
+                _homeworkDal.Add(homework);
                 return new Result(true, Messages.Added);
             }
             catch (Exception exception)
@@ -48,13 +54,13 @@ namespace Business.Concrete
                 throw new Exception(Messages.AddError, exception);
             }
         }
-
-        public IResult DeleteGroup(Group group)
+        
+        public IResult DeleteHomework(Homework homework)
         {
             try
             {
-                Group delete= _groupDal.Get(f => f.Id == group.Id);
-                _groupDal.Delete(delete);
+                Homework delete = _homeworkDal.Get(f => f.Id == homework.Id);
+                _homeworkDal.Delete(delete);
                 return new Result(true, Messages.Deleted);
             }
             catch (Exception exception)
@@ -63,9 +69,9 @@ namespace Business.Concrete
             }
         }
 
-        private IResult AlreadyExistName(Group group)
+        private IResult AlreadyExistName(Homework homework)
         {
-            bool result = _groupDal.GetAll(x => x.GroupName== group.GroupName).Any();
+            bool result = _homeworkDal.GetAll(x => x.HomeworkName == homework.HomeworkName).Any();
             if (result)
             {
                 return new ErrorResult(Messages.AlreadyPropertyName);

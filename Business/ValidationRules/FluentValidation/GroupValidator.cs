@@ -8,7 +8,7 @@ namespace Business.ValidationRules.FluentValidation
         public GroupValidator()
         {
             RuleFor(p => p.GroupName).NotEmpty();
-            RuleFor(x => x.GroupName).MaximumLength(1);
+            RuleFor(x => x.GroupName).MinimumLength(1);
         }
     }
 }
