@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Castle.DynamicProxy.Generators.Emitters;
 using Core.Entities;
 
 namespace Entities.DTOs

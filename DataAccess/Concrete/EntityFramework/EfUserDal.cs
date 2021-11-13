@@ -5,6 +5,7 @@ using System.Text;
 using Core.DataAccess.EntityFramework;
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -21,6 +22,27 @@ namespace DataAccess.Concrete.EntityFramework
                     select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
 
+            }
+        }
+
+        public IList<UserSelectedByOperationDto> GetUserSelectedByOperationId(int operationId)
+        {
+            using (var context = new GradingSystemDbContext())
+            {
+                var result = from user in context.Users
+                    join userClaim in context.UserOperationClaims on user.Id equals userClaim.UserId
+                    join operation in context.OperationClaims on userClaim.OperationClaimId equals operation.Id
+                    where userClaim.Id == operationId
+                    select new UserSelectedByOperationDto
+                    {
+                        UserId = user.Id,
+                        UserOperationId = userClaim.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        OperationName = operation.Name,
+                        Status = user.Status
+                    };
+                return result.ToList();
             }
         }
     }

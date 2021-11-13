@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.Constants;
 using Core.Entities.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -19,6 +22,19 @@ namespace Business.Concrete
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
+        }
+
+        public IDataResult<IList<UserSelectedByOperationDto>> GetUsersByOperationClaimId(int operationClaimId)
+        {
+            try
+            {
+                IList<UserSelectedByOperationDto> getList = _userDal.GetUserSelectedByOperationId(operationClaimId);
+                return new SuccessDataResult<IList<UserSelectedByOperationDto>>(getList);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(Messages.ListedError,exception);
+            }
         }
 
         public void Add(User user)
