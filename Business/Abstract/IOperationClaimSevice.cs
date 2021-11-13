@@ -10,7 +10,7 @@ namespace Business.Abstract
 {
     public interface IOperationClaimSevice
     {
-        IDataResult<IList<OperationClaim>> GetAllOperationClaim();
+        IDataResult<IList<OperationClaim>> GetAllOperationClaims();
         IResult AddOperationClaim(OperationClaim operationClaim);
     }
 }

@@ -18,9 +18,9 @@ namespace GradingSystemApp.Controllers
         }
 
         [HttpGet("getalloperationclaims")]
-        public IActionResult GetAllFaculties()
+        public IActionResult GetAllOperationClaims()
         {
-            var result = _operationClaimSevice.GetAllOperationClaim();
+            var result = _operationClaimSevice.GetAllOperationClaims();
             if (result.Success)
             {
                 return Ok(result);
@@ -30,7 +30,7 @@ namespace GradingSystemApp.Controllers
         }
 
         [HttpPost("addoperationclaim")]
-        public IActionResult AddFaculty(OperationClaim operationClaim)
+        public IActionResult AddOperationClaim(OperationClaim operationClaim)
         {
             var result = _operationClaimSevice.AddOperationClaim(operationClaim);
             if (result.Success)

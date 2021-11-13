@@ -25,7 +25,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<IList<OperationClaim>> GetAllOperationClaim()
+        public IDataResult<IList<OperationClaim>> GetAllOperationClaims()
         {
             try
             {
