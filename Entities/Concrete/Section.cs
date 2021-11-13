@@ -10,6 +10,7 @@ namespace Entities.Concrete
     public class Section : IEntity
     {
         public int Id { get; set; }
+        public int FacultyId { get; set; }
         public string SectionName { get; set; }
     }
 }

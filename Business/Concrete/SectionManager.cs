@@ -38,7 +38,6 @@ namespace Business.Concrete
             }
         }
 
-        [CacheRemoveAspect("ISectionService.Get")]
         public IDataResult<Section> GetBySectionId(int sectionId)
         {
             try
@@ -49,6 +48,19 @@ namespace Business.Concrete
             catch (Exception exception)
             {
                 throw new Exception(Messages.Error, exception);
+            }
+        }
+
+        public IDataResult<IList<Section>> GetSectionsByFaculltyId(int facultyId)
+        {
+            try
+            {
+                IList<Section> getListSections = _sectionDal.GetAll(x=>x.FacultyId == facultyId);
+                return new SuccessDataResult<IList<Section>>(getListSections);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(Messages.ListedError, exception);
             }
         }
 

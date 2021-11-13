@@ -8,8 +8,6 @@ using Entities.Concrete;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class FacultiesController : Controller
     {
         private IFacultyService _facultyService;

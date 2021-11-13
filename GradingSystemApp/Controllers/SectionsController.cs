@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Core.Utilities.Results;
 using Entities.Concrete;
 
 namespace WebAPI.Controllers
@@ -26,7 +27,19 @@ namespace WebAPI.Controllers
         [HttpGet("getallsections")]
         public IActionResult GetAllSections()
         {
-            Core.Utilities.Results.IDataResult<IList<Section>> result = _sectionService.GetAllSection();
+            IDataResult<IList<Section>> result = _sectionService.GetAllSection();
+            if (result.Success)
+            {
+                return View(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getsectionsbyfacultyid")]
+        public IActionResult GetSectionsByFacultyId(int facultyId)
+        {
+            IDataResult<IList<Section>> result = _sectionService.GetSectionsByFaculltyId(facultyId);
             if (result.Success)
             {
                 return View(result);
@@ -41,7 +54,7 @@ namespace WebAPI.Controllers
             var result = _sectionService.GetBySectionId(sectionId);
             if (result.Success)
             {
-                return Ok(result);
+                return View(result);
             }
 
             return BadRequest(result);
@@ -53,7 +66,7 @@ namespace WebAPI.Controllers
             var result = _sectionService.UpdateSection(section);
             if (result.Success)
             {
-                return Ok(result);
+                return View(result);
             }
 
             return BadRequest(result);
@@ -65,7 +78,7 @@ namespace WebAPI.Controllers
             var result = _sectionService.AddSection(section);
             if (result.Success)
             {
-                return Ok(result);
+                return View(result);
             }
 
             return BadRequest(result);
@@ -77,7 +90,7 @@ namespace WebAPI.Controllers
             var result = _sectionService.DeleteSection(section);
             if (result.Success)
             {
-                return Ok(result);
+                return View(result);
             }
 
             return BadRequest(result);

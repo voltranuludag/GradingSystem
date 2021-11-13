@@ -12,6 +12,7 @@ namespace Business.Abstract
     {
         IDataResult<IList<Section>> GetAllSection();
         IDataResult<Section> GetBySectionId(int sectionId);
+        IDataResult<IList<Section>> GetSectionsByFaculltyId(int facultyId);
         IResult UpdateSection(Section section);
         IResult AddSection(Section section);
         IResult DeleteSection(Section section);
